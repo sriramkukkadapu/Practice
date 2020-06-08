@@ -5,17 +5,20 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
-public class FilterSpecificCompany {
+public class FixEmailIdEiphen {
 public static void main(String args[]) throws IOException
 {
 	//Read all mail ids from file
 	
-	FileInputStream fis=new FileInputStream("hr mail ids.txt");  // Duplicates/Emails.txt
+	FileInputStream fis=new FileInputStream("fresher email ids.txt");  // Duplicates/Emails.txt
 	Set<String> hset=new LinkedHashSet<String>();
-	String temp="",searchterm="ibm";
-	Set<String> uniqueIds=new HashSet<String> ();
+	String temp="";
+	String searchterm="@accenture.com";
+	String fixed_email="";
+	LinkedList<String> uniqueIds=new LinkedList<String> ();
 	
 	int b; char ch;
 	
@@ -50,12 +53,19 @@ public static void main(String args[]) throws IOException
 	{
 		temp=itr.next();
 		temp=temp.toLowerCase();
-		if(temp.contains(searchterm)==true)
-		{
-			temp=temp.replace(';', ' ');
-			temp=temp.trim();
-			uniqueIds.add(temp);
+		if(temp.contains("-")) {
+			fixed_email=temp.split("-")[1];
+			uniqueIds.add(fixed_email);
 		}
+		else
+			uniqueIds.add(temp);
+			
+//		if(temp.contains(searchterm)==true)
+//		{
+//			temp=temp.replace(';', ' ');
+//			temp=temp.trim();
+//			uniqueIds.add(temp);
+//		}
 		//System.out.println(temp);
 	}
 	
