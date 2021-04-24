@@ -3,30 +3,52 @@ import java.util.Map;
 
 public class DateDiff3 {
 	
-	public static Map<Integer,Integer> month_days_map;
+public static Map<Integer,Integer> month_days_map;
 	
-public	static int day1=1; //24-5-2016
-public	static int month1=2;
-public  static int year1=2000;
+public	static int day1=1; //dd-mm-2016
+public	static int month1=1;
+public  static int year1=2019;
 	
 public	static int day2=1; //1-6-2018
-public	static int month2=2;
-public	static int year2=2000;
+public	static int month2=1;
+public	static int year2=2020;
 	
 public static void main(String args[])
 {
 	int days=0;
 	init_monthdays_map();
-	
+		
+	if(year1>year2) { System.out.println("Invalid Input"); System.exit(0); }
+	if(year1==year2) {
+		if(month1>month2) {
+			System.out.println("Invalid Input"); System.exit(0);
+		}
+			else if(month1==month2)
+				{
+					if(day1>=day2)
+						 System.out.println("Invalid Input"); System.exit(0); 
+				}
+	}
+
 	//current year current month days
 	days=days+month_days_map.get(month1)-day1;
 	System.out.println("this month remaining days: "+days);
-	
+
+	if(year1==year2) {
+		//now calc for each month in same year till < last month
+		for(int i=month1+1;i<month2;i++) {
+			System.out.println("adding days(for month "+i+"): "+month_days_map.get(i));
+			days=days+month_days_map.get(i);
+			}
+	}
+	else {
 	//now calc for remaining months in same year
 	for(int i=month1+1;i<=12;i++) {
 		System.out.println("adding days: "+month_days_map.get(i));
 		days=days+month_days_map.get(i);
+		}
 	}
+	
 	
 	if(year2-year1>=2)
 	{

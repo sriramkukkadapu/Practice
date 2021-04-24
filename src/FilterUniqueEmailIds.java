@@ -1,4 +1,3 @@
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,15 +6,14 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class FilterSpecificCompany {
+public class FilterUniqueEmailIds {
 public static void main(String args[]) throws IOException
 {
-	//Read all mail ids from file
+	//Read all mail ids from file Duplicates\\Emails.txt
 	
-	FileInputStream fis=new FileInputStream("hr mail ids.txt");  // Duplicates/Emails.txt
+	FileInputStream fis=new FileInputStream("testing mail ids pending.txt");
 	Set<String> hset=new LinkedHashSet<String>();
-	String temp="",searchterm="@capgemini";
-	Set<String> uniqueIds=new HashSet<String> ();
+	String temp="";
 	
 	int b; char ch;
 	
@@ -23,12 +21,12 @@ public static void main(String args[]) throws IOException
 	while((b=fis.read())!=-1)
 	{
 		ch=(char) b;
-
+		//System.out.print(ch);
 		if(ch==' ' || ch=='\n')
 		{
 			//if we get space means insert temp into set and make temp = empty again
 			temp=temp.trim();
-
+			//System.out.println(temp);
 			hset.add(temp);
 			temp="";
 		}
@@ -41,28 +39,13 @@ public static void main(String args[]) throws IOException
 		
 	}
 	
-	
+	System.out.println("Total mail ids in hashset: "+hset.size());
 	hset.remove("");
-	hset.remove(";");
 	Iterator<String> itr=hset.iterator();
-	searchterm=searchterm.toLowerCase();
-	while(itr.hasNext())
-	{
-		temp=itr.next();
-		temp=temp.toLowerCase();
-		if(temp.contains(searchterm)==true)
-		{
-			temp=temp.replace(';', ' ');
-			temp=temp.trim();
-			uniqueIds.add(temp);
-		}
-		//System.out.println(temp);
-	}
-	
-	itr=uniqueIds.iterator();
 	while(itr.hasNext())
 	{
 		System.out.println(itr.next());
 	}
+	
 }
 }

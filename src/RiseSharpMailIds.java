@@ -7,14 +7,14 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class FilterSpecificCompany {
+public class RiseSharpMailIds {
 public static void main(String args[]) throws IOException
 {
 	//Read all mail ids from file
 	
-	FileInputStream fis=new FileInputStream("hr mail ids.txt");  // Duplicates/Emails.txt
+	FileInputStream fis=new FileInputStream("rise sharp mail ids.txt");  // Duplicates/Emails.txt
 	Set<String> hset=new LinkedHashSet<String>();
-	String temp="",searchterm="@capgemini";
+	String temp="",searchterm="risesharp";
 	Set<String> uniqueIds=new HashSet<String> ();
 	
 	int b; char ch;
@@ -50,7 +50,7 @@ public static void main(String args[]) throws IOException
 	{
 		temp=itr.next();
 		temp=temp.toLowerCase();
-		if(temp.contains(searchterm)==true)
+		if(temp.contains(searchterm)==false) //we should take mail ids which doesnt have risesharp text
 		{
 			temp=temp.replace(';', ' ');
 			temp=temp.trim();

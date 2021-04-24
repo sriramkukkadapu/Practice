@@ -9,7 +9,6 @@ public	static int day1=1;
 public	static int month1=3;
 public  static int year1=2016;
 	
-	
 public static void main(String args[])
 {
 	int total_days=0;
