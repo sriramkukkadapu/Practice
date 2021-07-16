@@ -14,7 +14,7 @@ public static void main(String args[]) throws IOException
 	
 	FileInputStream fis=new FileInputStream("hr mail ids.txt");  // Duplicates/Emails.txt
 	Set<String> hset=new LinkedHashSet<String>();
-	String temp="",searchterm="@capgemini";
+	String temp="",searchterm="@pwc";
 	Set<String> uniqueIds=new HashSet<String> ();
 	
 	int b; char ch;
